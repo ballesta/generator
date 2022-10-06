@@ -1,0 +1,25 @@
+<?php
+
+class Set
+{
+    public $name = '';
+
+    public function __construct($name)
+    {
+        $this->name = $name;
+        echo 'Create ';
+        $this->display();
+    }
+
+    public function display()
+    {
+        echo "Set $this->name \n";
+    }
+}
+
+// Tests
+echo "Set tests\n";
+
+$s1 = new Set('s1');
+$s2 = new Set('s2');
+echo "End of Set tests\n";
