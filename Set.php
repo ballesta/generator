@@ -3,33 +3,48 @@
 class Set
 {
     // Set name
-    public $name = '';
+    public String $name = '';
+    public String $type;
     // Elements in set
     public $elements = [];
 
-    public function __construct($name)
+    public function __construct(String $name, String $type)
     {
         $this->name = $name;
-        echo '    Create ';
-        $this->display();
+        $this->type = $type;
     }
 
     public function display()
     {
-        echo "Set $this->name \n";
+        echo "Set $this->name of $this->type \n";
     }
 
+    // Add element to Set.
+    // - Check element type
+    // - Check not already in Set
     public function add_element($new)
     {
-        foreach ($this->elements as $e) 
+        // Check element type
+        $element_type = get_class($new);
+        if ($element_type == $this->type)
         {
-            if ($new->name == $e->name) 
+            // Correct type
+            // See if not already in set
+            foreach ($this->elements as $e) 
             {
-                echo "*** Error ***: element $new->name already in set \n";                
-                return;
+                if ($new->name == $e->name) 
+                {
+                    die( "*** Error : element $new->name \n"
+                       . "            already in set $this->name ***\n");                
+                }
             }
         }
-        echo "Add element $e->name to Set $this->name \n";
-        $this->elements[] = $e;
+        else
+        {
+            die( "*** Error ***: element class is $element_type should be $this->type \n");                
+        }
+        
+        echo "Add element $new->name to Set $this->name \n";
+        $this->elements[] = $new;
     }
 }

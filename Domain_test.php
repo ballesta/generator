@@ -1,8 +1,10 @@
 <?php
 include 'Model.php';
-include 'Domain.php';
-include 'Entity.php';
-include 'Attribute.php';
+include   'Domain.php';
+include     'Entity.php';
+include       'Attribute.php';
+include         'Text.php';
+include   'Set.php';
 
 echo "Test models\n";
 $m = new Model("test model");
@@ -17,8 +19,8 @@ $m
         ->entity("category", "categories")
         ->end()    
         ->entity("product")
-            ->attribute("code" ) ->end()
-            ->attribute("name" ) ->end()
+            ->text("code", 10 )  ->end()
+            ->text("name", 40 )  ->end()
             ->attribute("price") ->end()
         ->end()    
         ->entity("order")

@@ -3,24 +3,25 @@
 class Entity
 {
     public Domain $parent;
-    public String $singular_name;
+    public String $name;
     public String $plural_name;
     
     public $attributes = [];
 
     public function __construct
-        (String $singular_name,
+        (String $name,
          String $plural_name = "")
     {
-        $this->singular_name = $singular_name;
+        echo "Create Entity: $name \n";
+        $this->name = $name;
         if ($plural_name == "")
             // Plural name not given: just add an 's'
-            $this->plural_name   = $singular_name . "s";
+            $this->plural_name   = $name . "s";
     }
 
     public function display()
     {
-        echo "3:        Entity $this->singular_name \n";
+        echo "3:        Entity $this->name \n";
         foreach ($this->attributes as $a)
         {
             $a->display();
@@ -36,9 +37,20 @@ class Entity
         return $a;
     }
     
+    public function text(String $name,  $length)
+    {   
+        $t = new Text($name, $length);
+        // Domain that requested this entity creation
+        $t->parent = $this;
+        $this->attributes[] = $t;
+        return $t;
+    }
+
     // End of entity
     public function end()
     {
+        $c = get_class($this). ": " . $this->name;
+        echo "end of $c\n"; 
         return $this->parent;
     }
 }
