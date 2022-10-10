@@ -9,7 +9,7 @@ class Set
     public $elements = [];
 
     public function __construct(String $name, String $type)
-    {
+    {  
         $this->name = $name;
         $this->type = $type;
     }

@@ -2,6 +2,8 @@
 
 class Entity
 {
+    use dsl;
+
     public Domain $parent;
     public String $name;
     public String $plural_name;
@@ -12,6 +14,7 @@ class Entity
         (String $name,
          String $plural_name = "")
     {
+        $this->doc();
         echo "Create Entity: $name \n";
         $this->name = $name;
         if ($plural_name == "")
@@ -46,11 +49,4 @@ class Entity
         return $t;
     }
 
-    // End of entity
-    public function end()
-    {
-        $c = get_class($this). ": " . $this->name;
-        echo "end of $c\n"; 
-        return $this->parent;
-    }
 }

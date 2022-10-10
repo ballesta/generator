@@ -1,7 +1,10 @@
 <?php
 
+
 class Domain
 {
+    use dsl;
+
     public $parent;
 
     // Entities of this domains
@@ -35,10 +38,5 @@ class Domain
         return $e;
     }
 
-    // End of domain
-    public function end()
-    {
-        return $this->parent;
-    }
 
 }
